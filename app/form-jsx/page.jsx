@@ -1,3 +1,5 @@
+//form-jsx/page.jsx
+
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -73,7 +75,17 @@ export default function FormRegistrasi() {
                     href="/"
                     className="inline-flex items-center text-sm text-gray-600 hover:text-purple-600 transition mb-4"
                 >
-                    ←
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="w-4 h-4 mr-1"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                    Kembali
                 </Link>
 
                 <h1 className="text-2xl font-bold text-center text-purple-700 mb-6">
@@ -94,7 +106,7 @@ export default function FormRegistrasi() {
                             placeholder="Masukkan nama lengkap"
                             className={`w-full p-2 border rounded-lg focus:ring-2 outline-none text-gray-900 placeholder-gray-400 ${errors.nama
                                     ? "border-red-500 focus:ring-red-300"
-                                    : "border-gray-300 focus:ring-purple-400"
+                                : "border-gray-300 focus:ring-purple-400 text-gray-900 placeholder-gray-400"
                                 }`}
                         />
                         {errors.nama && (
@@ -115,7 +127,7 @@ export default function FormRegistrasi() {
                             placeholder="Masukkan email aktif"
                             className={`w-full p-2 border rounded-lg focus:ring-2 outline-none text-gray-900 placeholder-gray-400 ${errors.email
                                     ? "border-red-500 focus:ring-red-300"
-                                    : "border-gray-300 focus:ring-purple-400"
+                                : "border-gray-300 focus:ring-purple-400 text-gray-900 placeholder-gray-400"
                                 }`}
                         />
                         {errors.email && (
@@ -136,7 +148,7 @@ export default function FormRegistrasi() {
                             placeholder="Masukkan password"
                             className={`w-full p-2 border rounded-lg focus:ring-2 outline-none text-gray-900 placeholder-gray-400 ${errors.password
                                     ? "border-red-500 focus:ring-red-300"
-                                    : "border-gray-300 focus:ring-purple-400"
+                                : "border-gray-300 focus:ring-purple-400 text-gray-900 placeholder-gray-400"
                                 }`}
                         />
                         {errors.password && (

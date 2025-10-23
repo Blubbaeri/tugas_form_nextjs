@@ -1,14 +1,17 @@
+
+
 "use client";
+
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function HasilRegistrasi() {
-    const searchParams = useSearchParams();
+export default function ResultJSX() {
+    const params = useSearchParams();
     const router = useRouter();
 
-    const nama = searchParams.get("nama");
-    const email = searchParams.get("email");
-    const password = searchParams.get("password");
+    const nama = params.get("nama") || "";
+    const email = params.get("email") || "";
+    const password = params.get("password") || "";
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-100 to-white">
@@ -17,33 +20,34 @@ export default function HasilRegistrasi() {
                     Hasil Registrasi
                 </h1>
 
-                <div className="text-left space-y-2 mb-6">
-                    <p>
-                        <span className="font-semibold text-gray-700">Nama Lengkap:</span>{" "}
-                        <span className="text-gray-800">{nama}</span>
-                    </p>
-                    <p>
-                        <span className="font-semibold text-gray-700">Email:</span>{" "}
-                        <span className="text-gray-800">{email}</span>
-                    </p>
-                    <p>
-                        <span className="font-semibold text-gray-700">Password:</span>{" "}
-                        <span className="text-gray-800">{password}</span>
-                    </p>
+                {/* Data hasil */}
+                <div className="space-y-5 text-left">
+                    <div>
+                        <p className="text-sm font-semibold text-gray-700">Nama Lengkap</p>
+                        <p className="text-base font-medium text-gray-900 mt-1">{nama}</p>
+                    </div>
+                    <div>
+                        <p className="text-sm font-semibold text-gray-700">Email</p>
+                        <p className="text-base font-medium text-gray-900 mt-1">{email}</p>
+                    </div>
+                    <div>
+                        <p className="text-sm font-semibold text-gray-700">Password</p>
+                        <p className="text-base font-medium text-gray-900 mt-1">{password}</p>
+                    </div>
                 </div>
 
-                {/* Tombol Aksi */}
-                <div className="flex flex-col gap-3">
+                {/* Tombol aksi */}
+                <div className="mt-8 space-y-3">
                     <button
                         onClick={() => router.back()}
-                        className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold py-2 rounded-lg shadow-md hover:opacity-90 transition"
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg shadow-md transition"
                     >
                         Edit Data
                     </button>
 
                     <Link
                         href="/"
-                        className="block bg-gray-100 text-gray-700 font-medium py-2 rounded-lg shadow-sm hover:bg-gray-200 transition"
+                        className="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 rounded-lg shadow-sm transition"
                     >
                         Kembali ke Form Awal
                     </Link>

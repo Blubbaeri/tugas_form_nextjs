@@ -1,6 +1,9 @@
+//form-tsx/page.tsx
+
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function FormRegistrasi() {
     const router = useRouter();
@@ -62,8 +65,24 @@ export default function FormRegistrasi() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-100 to-white">
             <div className="bg-white shadow-lg rounded-2xl p-8 w-96">
+                <Link
+                    href="/"
+                    className="inline-flex items-center text-sm text-gray-600 hover:text-purple-600 transition mb-4"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="w-4 h-4 mr-1"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                    Kembali
+                </Link>
                 <h1 className="text-2xl font-bold text-center text-purple-700 mb-6">
-                    Form Registrasi
+                    Form Registrasi (TSX)
                 </h1>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -78,7 +97,7 @@ export default function FormRegistrasi() {
                             value={formData.nama}
                             onChange={handleChange}
                             placeholder="Masukkan nama lengkap"
-                            className={`w-full p-2 border rounded-lg focus:ring-2 focus:ring-purple-400 outline-none ${errors.nama ? "border-red-400" : "border-gray-300"
+                            className={`w-full p-2 border rounded-lg focus:ring-2 focus:ring-purple-400 outline-none ${errors.nama ? "border-red-400" : "border-gray-300 text-gray-900 placeholder-gray-400"
                                 }`}
                         />
                         {errors.nama && (
@@ -97,7 +116,7 @@ export default function FormRegistrasi() {
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="Masukkan email aktif"
-                            className={`w-full p-2 border rounded-lg focus:ring-2 focus:ring-purple-400 outline-none ${errors.email ? "border-red-400" : "border-gray-300"
+                            className={`w-full p-2 border rounded-lg focus:ring-2 focus:ring-purple-400 outline-none ${errors.email ? "border-red-400" : "border-gray-300 text-gray-900 placeholder-gray-400"
                                 }`}
                         />
                         {errors.email && (
@@ -105,7 +124,7 @@ export default function FormRegistrasi() {
                         )}
                     </div>
 
-                    {/* Input Password + Icon di Dalam Kotak */}
+                    {/* Input Password */}
                     <div>
                         <label className="block text-sm font-semibold mb-1 text-gray-700">
                             Password
@@ -117,7 +136,7 @@ export default function FormRegistrasi() {
                                 value={formData.password}
                                 onChange={handleChange}
                                 placeholder="Masukkan password"
-                                className={`w-full p-2 pr-10 border rounded-lg focus:ring-2 focus:ring-purple-400 outline-none ${errors.password ? "border-red-400" : "border-gray-300"
+                                className={`w-full p-2 pr-10 border rounded-lg focus:ring-2 focus:ring-purple-400 outline-none ${errors.password ? "border-red-400" : "border-gray-300 text-gray-900 placeholder-gray-400"
                                     }`}
                             />
                             <button
