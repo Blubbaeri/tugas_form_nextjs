@@ -1,79 +1,68 @@
 "use client";
-import { useSearchParams } from "next/navigation";
-import { useState, ChangeEvent, FormEvent } from "react";
 
-interface DataForm {
-    nama: string | null;
-    email: string | null;
-    password: string | null;
-}
+import { useSearchParams, useRouter } from "next/navigation";
 
-export default function HasilRegistrasiTSX() {
+export default function ResultTSX() {
     const params = useSearchParams();
-    const [editMode, setEditMode] = useState<boolean>(false);
-    const [data, setData] = useState<DataForm>({
-        nama: params.get("nama"),
-        email: params.get("email"),
-        password: params.get("password"),
-    });
+    const router = useRouter();
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setData({ ...data, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        setEditMode(false);
-    };
+    const nama = params.get("nama");
+    const email = params.get("email");
+    const password = params.get("password");
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-100 to-white">
-            <div className="bg-white shadow-lg rounded-2xl p-8 w-96">
-                <h1 className="text-2xl font-bold text-center text-purple-700 mb-6">
-                    Hasil Registrasi (TSX)
+            <div className="bg-white shadow-lg rounded-2xl p-8 w-96 text-center">
+                <h1 className="text-2xl font-bold text-purple-700 mb-6">
+                    Hasil Registrasi
                 </h1>
 
-                {!editMode ? (
-                    <div className="text-gray-700 space-y-2">
-                        <p><strong>Nama Lengkap:</strong> {data.nama}</p>
-                        <p><strong>Email:</strong> {data.email}</p>
-                        <p><strong>Password:</strong> {data.password}</p>
-
-                        <button
-                            onClick={() => setEditMode(true)}
-                            className="mt-4 w-full bg-yellow-400 text-white py-2 rounded-lg font-semibold hover:bg-yellow-500"
-                        >
-                            Edit Data
-                        </button>
+                <div className="text-left space-y-3 mb-6">
+                    <div>
+                        <p className="text-sm font-semibold text-gray-700">
+                            Nama Lengkap
+                        </p>
+                        <p className="text-gray-900">{nama}</p>
                     </div>
-                ) : (
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                        <input
-                            name="nama"
-                            value={data.nama ?? ""}
-                            onChange={handleChange}
-                            className="p-2 border rounded-lg"
-                        />
-                        <input
-                            name="email"
-                            value={data.email ?? ""}
-                            onChange={handleChange}
-                            className="p-2 border rounded-lg"
-                        />
-                        <input
-                            name="password"
-                            value={data.password ?? ""}
-                            onChange={handleChange}
-                            className="p-2 border rounded-lg"
-                        />
-                        <button
-                            type="submit"
-                            className="bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600"
-                        >
-                            Simpan Perubahan
-                        </button>
-                    </form>
-                )}
+
+                    <div>
+                        <p className="text-sm font-semibold text-gray-700">
+                            Email
+                        </p>
+                        <p className="text-gray-900">{email}</p>
+                    </div>
+
+                    <div>
+                        <p className="text-sm font-semibold text-gray-700">
+                            Password
+                        </p>
+                        <p className="text-gray-900">{password}</p>
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                    <button
+                        onClick={() =>
+                            router.push(
+                                `/form-tsx?page=edit&${new URLSearchParams({
+                                    nama: nama || "",
+                                    email: email || "",
+                                    password: password || "",
+                                }).toString()}`
+                            )
+                        }
+                        className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold py-2 rounded-lg shadow-md hover:opacity-90 transition"
+                    >
+                        Edit Data
+                    </button>
+
+                    <button
+                        onClick={() => router.push("/form-tsx")}
+                        className="border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium py-2 rounded-lg shadow-sm transition"
+                    >
+                        Kembali ke Form Awal
+                    </button>
+                </div>
             </div>
         </div>
     );

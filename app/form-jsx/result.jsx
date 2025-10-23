@@ -1,74 +1,53 @@
 "use client";
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function HasilRegistrasi() {
-    const params = useSearchParams();
-    const [editMode, setEditMode] = useState(false);
-    const [data, setData] = useState({
-        nama: params.get("nama"),
-        email: params.get("email"),
-        password: params.get("password"),
-    });
+    const searchParams = useSearchParams();
+    const router = useRouter();
 
-    const handleChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value });
-    };
+    const nama = searchParams.get("nama");
+    const email = searchParams.get("email");
+    const password = searchParams.get("password");
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-100 to-white">
-            <div className="bg-white shadow-lg rounded-2xl p-8 w-96">
-                <h1 className="text-2xl font-bold text-center text-purple-700 mb-6">
+            <div className="bg-white shadow-lg rounded-2xl p-8 w-96 text-center">
+                <h1 className="text-2xl font-bold text-purple-700 mb-6">
                     Hasil Registrasi
                 </h1>
 
-                {!editMode ? (
-                    <div className="text-gray-700 space-y-2">
-                        <p><strong>Nama Lengkap:</strong> {data.nama}</p>
-                        <p><strong>Email:</strong> {data.email}</p>
-                        <p><strong>Password:</strong> {data.password}</p>
+                <div className="text-left space-y-2 mb-6">
+                    <p>
+                        <span className="font-semibold text-gray-700">Nama Lengkap:</span>{" "}
+                        <span className="text-gray-800">{nama}</span>
+                    </p>
+                    <p>
+                        <span className="font-semibold text-gray-700">Email:</span>{" "}
+                        <span className="text-gray-800">{email}</span>
+                    </p>
+                    <p>
+                        <span className="font-semibold text-gray-700">Password:</span>{" "}
+                        <span className="text-gray-800">{password}</span>
+                    </p>
+                </div>
 
-                        <button
-                            onClick={() => setEditMode(true)}
-                            className="mt-4 w-full bg-yellow-400 text-white py-2 rounded-lg font-semibold hover:bg-yellow-500"
-                        >
-                            Edit Data
-                        </button>
-                    </div>
-                ) : (
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            setEditMode(false);
-                        }}
-                        className="flex flex-col gap-4"
+                {/* Tombol Aksi */}
+                <div className="flex flex-col gap-3">
+                    <button
+                        onClick={() => router.back()}
+                        className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold py-2 rounded-lg shadow-md hover:opacity-90 transition"
                     >
-                        <input
-                            name="nama"
-                            value={data.nama}
-                            onChange={handleChange}
-                            className="p-2 border rounded-lg"
-                        />
-                        <input
-                            name="email"
-                            value={data.email}
-                            onChange={handleChange}
-                            className="p-2 border rounded-lg"
-                        />
-                        <input
-                            name="password"
-                            value={data.password}
-                            onChange={handleChange}
-                            className="p-2 border rounded-lg"
-                        />
-                        <button
-                            type="submit"
-                            className="bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600"
-                        >
-                            Simpan Perubahan
-                        </button>
-                    </form>
-                )}
+                        Edit Data
+                    </button>
+
+                    <Link
+                        href="/"
+                        className="block bg-gray-100 text-gray-700 font-medium py-2 rounded-lg shadow-sm hover:bg-gray-200 transition"
+                    >
+                        Kembali ke Form Awal
+                    </Link>
+                </div>
             </div>
         </div>
     );
