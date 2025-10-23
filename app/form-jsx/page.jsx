@@ -77,7 +77,7 @@ export default function FormRegistrasi() {
                 </Link>
 
                 <h1 className="text-2xl font-bold text-center text-purple-700 mb-6">
-                    Form Registrasi
+                    Form Registrasi (JSX)
                 </h1>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
