@@ -17,7 +17,7 @@ export default function Home() {
                     {/* Tombol ke versi JSX */}
                     <Link
                         href="/form-jsx"
-                        className="w-full sm:w-1/2 bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-xl transition text-lg font-medium"
+                        className="w-full sm:w-1/2 bg-orange-400 hover:bg-orange-500 text-white py-3 px-4 rounded-xl transition text-lg font-medium"
                     >
                         Form Versi JSX
                     </Link>
